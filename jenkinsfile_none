@@ -18,7 +18,7 @@ pipeline{
          stage('build'){
             agent { label 'slave2_ubuntu'}
             steps {
-                echo "building java code"
+                echo "building java1 code"
                 sh '''
                      #!/bin/bash
                      sleep 5
