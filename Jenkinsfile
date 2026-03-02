@@ -1,22 +1,26 @@
 pipeline{
-     agent any
-     
+     agent { label 'slave1'}
+
     stages{
         stage('stage1'){
             steps{
-                 sh 'sleep 5'
-                 echo "This is the stage 1"
+                echo "This is the stage 1"
+                sh '''
+                     sleep 5
+                     echo "this is a linux command"
+                   '''
+                   
+                 
             }
         }
-         stage('stage2'){
+         stage('build'){
             steps {
+                echo "building java code"
                 sh '''
                      #!/bin/bash
-                     pwd
-                     ls -lrt
                      sleep 5
                  ''' 
-                 echo "this is  the stage 1" 
+                 
            }
         }
     }
