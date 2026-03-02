@@ -15,9 +15,7 @@ pipeline{
                 echo "NAME: ${params.NAME}"
                 echo "SKIP_TEST: ${params.SKIP_TEST}"
                 echo "BRANCH TO DEPLOY: ${params.BRANCH}"
-                
                    
-                 
             }
         }
          stage('build'){
