@@ -1,7 +1,5 @@
 pipeline{
-    //  agent { label 'slave1ubuntu && slave2_ubuntu'}
-    //  agent { label 'slave1ubuntu || slave2_ubuntu'}
-     agent none
+    agent none
 
      parameters{
         string(name: 'NAME',defaultValue: '',description:'')
