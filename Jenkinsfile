@@ -18,15 +18,6 @@ pipeline{
                    
             }
         }
-         stage('build'){
-            steps {
-                echo "building java code"
-                sh '''
-                     #!/bin/bash
-                     sleep 5
-                 ''' 
-                 
-           }
-        }
+         
     }
 }
