@@ -1,14 +1,21 @@
 pipeline{
-     agent { label 'slave1ubuntu'}
+    //  agent { label 'slave1ubuntu && slave2_ubuntu'}
+    //  agent { label 'slave1ubuntu || slave2_ubuntu'}
+     agent none
+
+     parameters{
+        string(name: 'NAME',defaultvalue: '',description:'')
+        booleanParam (name: 'SKIP_TEST',description:'')
+        choice(name: 'BRANCH',choices: ['master','staging','prod'],description:'')
+     }
 
     stages{
         stage('stage1'){
             steps{
-                echo "This is the stage 1"
-                sh '''
-                     sleep 5
-                     echo "this is a linux command"
-                   '''
+                echo "NAME: ${params.NAME}"
+                echo "SKIP_TEST: ${params.SKIP_TEST}"
+                echo "BRANCH TO DEPLOY: ${params.BRANCH}"
+                
                    
                  
             }
