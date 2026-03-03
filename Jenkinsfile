@@ -16,6 +16,7 @@ pipeline{
                     steps{
                         echo "This is windows running"
                         sh 'sleep 5'
+                        exit 1
                     }
                 }
 
