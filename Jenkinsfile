@@ -6,8 +6,13 @@ pipeline{
     stages{
         stage('stage1'){
             steps{
+                catchError(buildResult: 'SUCESS', stageResult: 'FAILURE'){
                 echo "This is stage1 running"
-                sh 'sleep 5'
+                sh '''
+                  sleep 5
+                  exit 1
+                  '''
+                }
             }
         }
         stage('PARALLEL TESTING'){
@@ -16,7 +21,7 @@ pipeline{
                     steps{
                         echo "This is windows running"
                         sh 'sleep 5'
-                        exit 1
+                        
                     }
                 }
 
