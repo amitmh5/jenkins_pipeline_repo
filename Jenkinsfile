@@ -26,7 +26,7 @@ pipeline{
                         }
                         catch(err){
                            echo "Error caught: ${err}"
-                           currentBuild.result = 'SUCCESS'
+                           currentBuild.result = 'FAILURE'
                            
                         }
                         }
