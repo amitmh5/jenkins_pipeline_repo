@@ -2,8 +2,9 @@ pipeline{
     agent none
 
      parameters{
-        DOCKER_USER = ''
-        AWS_ACCESS_KEY = ''
+        string(name: 'NAME',defaultValue: '',description:'')
+        booleanParam (name: 'SKIP_TEST',description:'')
+        choice(name: 'BRANCH',choices: ['master','staging','prod'],description:'')
      }
 
     stages{
@@ -14,12 +15,13 @@ pipeline{
                 echo "NAME: ${params.NAME}"
                 echo "SKIP_TEST: ${params.SKIP_TEST}"
                 echo "BRANCH TO DEPLOY: ${params.BRANCH}"
-                
-                sh '''
+
+             sh '''
                     echo "name: ${}"
                     echo "SKIP_TEST: ${SKIP_TEST}"
                     echo "BRANCH: ${BRANCH}" 
                 '''
+                   
             }
         }
          
