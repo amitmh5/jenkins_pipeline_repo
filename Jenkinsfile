@@ -9,13 +9,13 @@ pipeline{
     stages{
         stage('stage1'){
             steps{
-                echo "DOCKER_USER: ${DOCKER_USER}"
-                echo "SKIP_AWS_ACCESS_KEYTEST: ${AWS_ACCESS_KEY}"
+                echo "DOCKER_USER: ${env.DOCKER_USER}"
+                echo "SKIP_AWS_ACCESS_KEYTEST: ${env.AWS_ACCESS_KEY}"
                 
                 
                 sh '''
                     env
-                    
+                    echo $DOCKER_USER
                 '''
             }
         }
