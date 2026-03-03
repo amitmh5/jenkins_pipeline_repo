@@ -36,8 +36,18 @@ pipeline{
         }
         stage('final'){
                     steps{
-                        echo "This is final running"
-                        sh 'sleep 5'
+                        try{
+                            sh '''
+                  sleep 5
+                  exit 1
+                  '''
+                        }
+
+                        catch{
+                           buildResult: 'SUCCESS',
+                           stageResult: 'FAILURE'
+                        }
+                        
                     }
                 }
 
