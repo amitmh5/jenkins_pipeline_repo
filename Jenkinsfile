@@ -15,6 +15,22 @@ pipeline{
                 }
             }
         }
+         stage('stage2'){
+                    steps{
+                        script{
+                        try{
+                            sh '''
+                               sleep 5
+                                exit 1
+                             '''
+                        }
+                        catch(err){
+                           currentbuild.result: 'SUCCESS',
+                           currentstage.result: 'FAILURE'
+                        }
+                        }
+                    }
+                }
         stage('PARALLEL TESTING'){
             parallel{
                 stage('WINDOWS TESTING'){
@@ -34,22 +50,7 @@ pipeline{
             }
            
         }
-        stage('final'){
-                    steps{
-                        try{
-                            sh '''
-                  sleep 5
-                  exit 1
-                  '''
-                        }
-
-                        catch{
-                           buildResult: 'SUCCESS',
-                           stageResult: 'FAILURE'
-                        }
-                        
-                    }
-                }
+       
 
          
     }
