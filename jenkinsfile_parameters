@@ -17,7 +17,7 @@ pipeline{
                 echo "BRANCH TO DEPLOY: ${params.BRANCH}"
 
              sh '''
-                    echo "name: ${}"
+                    echo "name: ${NAME}"
                     echo "SKIP_TEST: ${SKIP_TEST}"
                     echo "BRANCH: ${BRANCH}" 
                 '''
