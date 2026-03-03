@@ -1,7 +1,7 @@
 pipeline{
     agent any
 
-     parameters{
+     environment{
         DOCKER_USER = 'amitmh'
         AWS_ACCESS_KEY = '1234'
      }
