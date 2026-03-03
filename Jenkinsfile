@@ -1,24 +1,21 @@
 pipeline{
-    agent none
+    agent any
 
      parameters{
-        DOCKER_USER = ''
-        AWS_ACCESS_KEY = ''
+        DOCKER_USER = 'amitmh'
+        AWS_ACCESS_KEY = '1234'
      }
 
     stages{
         stage('stage1'){
-
-            agent { label 'slave1ubuntu'}
             steps{
-                echo "NAME: ${params.NAME}"
-                echo "SKIP_TEST: ${params.SKIP_TEST}"
-                echo "BRANCH TO DEPLOY: ${params.BRANCH}"
+                echo "DOCKER_USER: ${DOCKER_USER}"
+                echo "SKIP_AWS_ACCESS_KEYTEST: ${AWS_ACCESS_KEY}"
+                
                 
                 sh '''
-                    echo "name: ${}"
-                    echo "SKIP_TEST: ${SKIP_TEST}"
-                    echo "BRANCH: ${BRANCH}" 
+                    env
+                    
                 '''
             }
         }
