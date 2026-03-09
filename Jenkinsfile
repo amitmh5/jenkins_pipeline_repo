@@ -6,7 +6,7 @@ pipeline{
     }
     
     environment{
-        CURRRENT_ENV = 'prod'
+        CURRENT_ENV = 'prod'
     }
 
      
