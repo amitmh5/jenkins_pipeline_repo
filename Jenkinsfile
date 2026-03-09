@@ -1,53 +1,47 @@
 pipeline{
     agent any
+     
+    parameters{
+        booleanParam(name: 'DEPLOY', description: 'want to deploy to Production')
+    }
+    
+    environment{
+        CURRRENT_ENV = 'prodaa'
+    }
 
      
 
     stages{
-        stage('stage1'){
+        stage('stage1 when branch main'){
+            when{
+                branch 'main'
+            }
             steps{
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                
                 echo "This is stage1 running"
                 sh '''
                   sleep 5
                   exit 1
                   '''
-                }
+                
             }
         }
-         stage('stage2'){
+         stage('when environment'){
+            when{
+                environment name:'CURRENT_ENV', value:'prod'
+            }
                     steps{
-                        script{
-                        try{
-                            sh '''
-                               sleep 5
-                                exit 1
-                             '''
-                        }
-                        catch(err){
-                           echo "Error caught: ${err}"
-                           currentBuild.result = 'SUCCESS'
-                           
-                        }
-                        }
+                       echo 'This is final running'
+                       sh 'sleep 5'
                     }
                 }
-        stage('PARALLEL TESTING'){
-            parallel{
-                stage('WINDOWS TESTING'){
-                    steps{
-                        echo "This is windows running"
-                        sh 'sleep 5'
-                        
-                    }
-                }
-
-                stage('MAC TESTING'){
-                    steps{
-                        echo "This is macos running"
-                        sh 'sleep 10'
-                    }
-                }
+        stage('when parameter'){
+            when{
+                expression {params.DEPLOY == true}
+            }
+            steps{
+                echo " This is final running"
+                sh'sleep 5'
             }
            
         }
